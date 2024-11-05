@@ -4,7 +4,7 @@
 
 --// Config
 getgenv().whscript = "Gato's Slap Farm Paid"        --Change to the name of your script
-getgenv().webhookexecUrl = "https://discord.com/api/webhooks/1301740321066979368/BsTBtPYuF8FPmkYUJVsAqmc3-x_U8QTbYjmryTzzrXygXNUHGWfSJTwzXe5WnD9qkHpT"  --Put your Webhook Url here
+getgenv().webhookexecUrl = "https://discord.com/api/webhooks/1303488275486347407/ORyLU9vu9V13IYfiCwWWP0JjFgADw_0ZYJgw6vVsQbG7VjiND25ld5m-CrVxJ7oJrjBo"  --Put your Webhook Url here
 getgenv().ExecLogSecret = false                --decide to also log secret section
 
 --// Execution Log Script
